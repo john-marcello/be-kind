@@ -3,7 +3,6 @@
 const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
 
-
 // set up graphql typeDefs queries and resolvers
 
 const { typeDefs } = require('./graphql/typeDefs');
