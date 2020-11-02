@@ -11,13 +11,13 @@ const postSchema = new Schema ({
         {
             body: String,
             username: String,
-            crewatedAt: String,
+            createdAt: String
         }
     ],
     likes: [
         {
             username: String,
-            crewatedAt: String,
+            createdAt: String
         }
     ],
     user: {
