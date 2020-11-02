@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server');
 
 // set up graphql typeDefs queries and resolvers
+// test
 
 const typeDefs = gql`
     type Post {
