@@ -22,17 +22,17 @@ module.exports = {
         ) {
             const { errors, valid } = validateLoginInput(username, password);
             if(!valid) {
-                throw new UserInputError('Input data is not valid', { errors });  
+                throw new UserInputError('Input data is not valid.', { errors });  
             }
             const user = await User.findOne({ username });
             if(!user) {
-               errors.general = 'User not found';
-               throw new UserInputError('Wrong credentials', { errors });
+               errors.general = 'Login or password is incorrect.';
+               throw new UserInputError('Wrong credentials.', { errors });
             }
             const match = await bcrypt.compare(password, user.password);
             if(!match) {
-                errors.general = 'User not found';
-                throw new UserInputError('Wrong credentials', { errors });
+                errors.general = 'Login or password is incorrect.';
+                throw new UserInputError('Wrong Credentials.', { errors });
              }
              const token = generateToken(user);
              return {
@@ -54,9 +54,9 @@ module.exports = {
             };
             const user = await User.findOne({ username });
             if(user) {
-                throw new UserInputError('Username is taken', {
+                throw new UserInputError('Username is taken.', {
                     errors: {
-                        username: 'Tihs username is taken'
+                        username: 'This username is taken.'
                     }
                 }
             )};
