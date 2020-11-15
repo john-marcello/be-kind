@@ -9,3 +9,12 @@
     margin: auto;
     width: 30rem;
 }
+
+.ui.blue.button:focus, .ui.blue.buttons .button:focus {
+    background-color: #2185d0;
+}
+
+.like-comment .ui.button, 
+.ui.like-comment {
+    font-size: 0.9rem;
+}
