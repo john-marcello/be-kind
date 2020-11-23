@@ -8,28 +8,51 @@ import { FETCH_POSTS_QUERY } from '../utils/graphql'
 
 function PostForm() {
     const { values, onChange, onSubmit } = useForm(createPostCallback, {
-        body: ''
+        body: "",
     });
 
-    const[createPost, { error }] = useMutation(CREATE_POST_MUTATION, { 
+    const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
         variables: values,
+
         update(proxy, result) {
-            const data = proxy.readQuery({
-                query: FETCH_POSTS_QUERY,
-            })
-            proxy.writeQuery({
-                query: FETCH_POSTS_QUERY,
-                data: {
-                    getPosts: [result.data.createPost, ...data.getPosts],
-                },
-            });
-            values.body = ''
+            values.body = "";
         },
+        onError(err) {
+            //console.log(err)
+        },
+        refetchQueries: [{ query: FETCH_POSTS_QUERY }],
     });
 
     function createPostCallback() {
         createPost();
     }
+
+
+
+// function PostForm() {
+//     const { values, onChange, onSubmit } = useForm(createPostCallback, {
+//         body: ''
+//     });
+
+//     const[createPost, { error }] = useMutation(CREATE_POST_MUTATION, { 
+//         variables: values,
+//         update(proxy, result) {
+//             const data = proxy.readQuery({
+//                 query: FETCH_POSTS_QUERY,
+//             })
+//             proxy.writeQuery({
+//                 query: FETCH_POSTS_QUERY,
+//                 data: {
+//                     getPosts: [result.data.createPost, ...data.getPosts],
+//                 },
+//             });
+//             values.body = ''
+//         },
+//     });
+
+//     function createPostCallback() {
+//         createPost();
+//     }
 
     return (
         <>
