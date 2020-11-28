@@ -11,6 +11,7 @@ const { MONGODB } = require('./config.js');
 
 const pubsub = new PubSub();
 
+const PORT = process.env.port || 5000;
 
 // set up apollo server,
 // connect to the database with mongoose
@@ -30,10 +31,13 @@ mongoose.connect( MONGODB, {
         useUnifiedTopology: true 
     })
     .then(() => {
-        return server.listen({ port: 5000 })
+        return server.listen({ port: PORT })
     })
     .then( res => { 
         console.log(`The server is all the way up at ${res.url}`) 
+    })
+    .catch(err => {
+        console.log(err)
     });
 
 
