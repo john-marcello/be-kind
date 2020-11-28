@@ -15,6 +15,7 @@
 }
 
 .like-comment .ui.button, 
-.ui.like-comment {
+.ui.like-comment,
+.ui.delete-button {
     font-size: 0.9rem;
 }
