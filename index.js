@@ -23,6 +23,8 @@ const server = new ApolloServer ({
     context: ({ req }) => ({ req, pubsub})
 });
 
+// comment
+
 mongoose.connect( MONGODB, { 
         useNewUrlParser: true, 
         useUnifiedTopology: true 

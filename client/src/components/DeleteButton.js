@@ -14,7 +14,6 @@ function DeleteButton({ postId, commentId, callback }) {
 
     const [deletePostOrMutation] = useMutation(mutation, {
         refetchQueries: [{ query: FETCH_POSTS_QUERY }],
-
         update(proxy) {
             setConfirmOpen(false);
 
@@ -22,8 +21,11 @@ function DeleteButton({ postId, commentId, callback }) {
                 const data = proxy.readQuery({
                     query: FETCH_POSTS_QUERY,
                 });
-                data.getPosts = data.getPosts.filter((p) => p.id !== postId);
-                proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
+                // data.getPosts = data.getPosts.filter((p) => p.id !== postId);
+                proxy.writeQuery({ 
+                    query: FETCH_POSTS_QUERY,
+                    data: { getPosts: data.getPosts.filter((p) => p.id !== postId) }
+                });
             };
 
             if (callback) callback();
@@ -39,8 +41,10 @@ function DeleteButton({ postId, commentId, callback }) {
         <>
             <MyPopup content={ commentId ? 'Delete Comment' : 'Delete Post' }>
                 <Button
+                    basic
+                    className="delete-button"
                     as='div'
-                    color='red'
+                    color='blue'
                     floated='right'
                     onClick={() => setConfirmOpen(true)}
                 >

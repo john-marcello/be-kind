@@ -79,6 +79,7 @@ function SinglePost(props) {
                                 />
                                 <MyPopup content='Comment On Post'>
                                     <Button
+                                        className='like-comment'
                                         as='div'
                                         labelPosition='right'
                                         onClick={() =>
@@ -117,7 +118,7 @@ function SinglePost(props) {
                                             />
                                             <button
                                                 type='submit' 
-                                                className='ui button teal' 
+                                                className='ui button blue' 
                                                 disabled={comment.trim() === ''} 
                                                 onClick={submitComment}
                                             >Submit</button>
